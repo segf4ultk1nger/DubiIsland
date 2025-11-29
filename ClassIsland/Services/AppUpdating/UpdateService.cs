@@ -473,11 +473,20 @@ public class UpdateService : IHostedService, INotifyPropertyChanged
         }
 
         await using var stream = File.OpenRead(Path.Combine(UpdateTempPath, @"./update.zip"));
-        var sha256 = await SHA256.HashDataAsync(stream);
-        var str = BitConverter.ToString(sha256);
-        str = str.Replace("-", "");
+
+        // --- 修复开始 ---
+        // .NET 6 写法：先 Create 实例，再调用 ComputeHashAsync
+        using var sha256Alg = SHA256.Create();
+        var sha256Bytes = await sha256Alg.ComputeHashAsync(stream);
+        // --- 修复结束 ---
+
+        // 优化：.NET 5+ 其实已经有 Convert.ToHexString 了，比 BitConverter + Replace 更快且不分配多余字符串
+        var str = Convert.ToHexString(sha256Bytes);
+        // 或者保持你原来的写法：
+        // var str = BitConverter.ToString(sha256Bytes).Replace("-", "");
+
         Logger.LogDebug("更新文件哈希：{}", str);
-        if (!string.Equals(str, Settings.UpdateArtifactHash, StringComparison.CurrentCultureIgnoreCase))
+        if (!string.Equals(str, Settings.UpdateArtifactHash, StringComparison.OrdinalIgnoreCase)) // 推荐用 OrdinalIgnoreCase
         {
             throw new Exception("更新文件校验失败，可能下载已经损坏。");
         }

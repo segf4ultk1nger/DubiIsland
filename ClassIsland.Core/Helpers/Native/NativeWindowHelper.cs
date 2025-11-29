@@ -15,7 +15,7 @@ public static class NativeWindowHelper
 {
     #region 常量
     public static readonly IntPtr HFILE_ERROR = new IntPtr(-1);
-    public static readonly HWND HWND_TOPMOST = new(-1);
+    public static readonly HWND HWND_TOPMOST = (HWND)new IntPtr(-1);
     public static readonly HWND HWND_BOTTOM = (HWND)new IntPtr(1);
 
     public const int OF_READWRITE = 2;
@@ -171,8 +171,14 @@ public static class NativeWindowHelper
 
     public static unsafe PWSTR BuildPWSTR(int bufferSize, out nint ptr)
     {
+        // 1. 分配非托管内存
         ptr = Marshal.AllocHGlobal(bufferSize * sizeof(char));
-        return new PWSTR((char*)ptr.ToPointer());
+
+        // 2. 将 nint 显式转换为 IntPtr，然后调用 ToPointer() 获取 void* 指针。
+        // (IntPtr)ptr : 将 nint 转换为 IntPtr
+        // .ToPointer() : 在 IntPtr 上调用获取 void*
+        // (char*) : 将 void* 转换为 char*，用于 PWSTR 构造函数
+        return new PWSTR((char*)((IntPtr)ptr).ToPointer());
     }
 
     public struct StyleStruct

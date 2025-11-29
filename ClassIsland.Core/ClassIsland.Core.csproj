@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -10,6 +10,7 @@
     <Description>ClassIsland 应用核心依赖库，包括 ClassIsland 封装的一些常用控件和方法。</Description>
     <PackageTags>classisland;wpf;material design</PackageTags>
     <Configurations>Debug;Release;Debug_MSIX;Release_MSIX</Configurations>
+	<LangVersion>13.0</LangVersion>
   </PropertyGroup>
 
   <!-- <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -32,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="DotNetCampus.LatestCSharpFeatures" Version="13.0.1" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.106">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

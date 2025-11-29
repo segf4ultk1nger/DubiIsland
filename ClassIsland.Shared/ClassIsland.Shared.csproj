@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net472</TargetFrameworks>
+    <TargetFrameworks>net6.0;net472</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
@@ -21,6 +21,7 @@
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
     <PackageReference Include="CsesSharp" Version="1.0.0" />
+    <PackageReference Include="DotNetCampus.LatestCSharpFeatures" Version="13.0.1" />
     <PackageReference Include="Google.Protobuf" Version="3.27.0-rc1" />
     <PackageReference Include="Grpc" Version="2.46.6" />
     <PackageReference Include="Grpc.Tools" Version="2.62.0">

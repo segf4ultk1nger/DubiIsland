@@ -120,7 +120,7 @@ public partial class DebugPage : SettingsPageBase
         if (!ViewModel.IsTargetDateTimeLoaded) return;
 
         DateTime now = ExactTimeService.GetCurrentLocalDateTime();
-        DateTime tar = new(DateOnly.FromDateTime(now), TimeOnly.FromDateTime(ViewModel.TargetTime));
+        DateTime tar = DateOnly.FromDateTime(now).ToDateTime(TimeOnly.FromDateTime(ViewModel.TargetTime));
 
         SettingsService.Settings.DebugTimeOffsetSeconds += Math.Round((tar - now).TotalSeconds);
     }

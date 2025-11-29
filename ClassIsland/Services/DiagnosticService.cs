@@ -91,7 +91,15 @@ public class DiagnosticService(SettingsService settingsService, FileFolderServic
     {
         try
         {
-            var temp = Directory.CreateTempSubdirectory("ClassIslandDiagnosticExport").FullName;
+            // 获取系统临时目录并拼接文件夹名
+            var tempPath = Path.Combine(Path.GetTempPath(), "ClassIslandDiagnosticExport");
+
+            // 显式创建这个目录 (如果已存在，它不会报错，直接返回 DirectoryInfo)
+            Directory.CreateDirectory(tempPath);
+
+            // 3赋值
+            var temp = tempPath;
+
             var logs = string.Join('\n', AppLogService.Logs);
             //await File.WriteAllTextAsync(Path.Combine(temp, "Logs.log"), logs);
             await File.WriteAllTextAsync(Path.Combine(temp, "DiagnosticInfo.txt"), GetDiagnosticInfo());

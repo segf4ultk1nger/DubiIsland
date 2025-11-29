@@ -460,7 +460,7 @@ public partial class MainWindow : Window
             {
                 BeginStoryboardInLine("OverlayOut");
             }
-            await request.CompletedTokenSource.CancelAsync();
+            request.CompletedTokenSource.Cancel();
         }
 
         ViewModel.CurrentOverlayContent = null;
@@ -641,7 +641,7 @@ public partial class MainWindow : Window
             }
         }
 
-        return nint.Zero;
+        return IntPtr.Zero;
     }
 
     private void AutoSetNotificationEffectRenderingScale()

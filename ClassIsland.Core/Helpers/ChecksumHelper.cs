@@ -50,11 +50,18 @@ public static class ChecksumHelper
     /// <returns>校验结果</returns>
     public static bool CheckChecksum(string filePath, string checksum)
     {
-        var stream = File.OpenRead(filePath);
-        var md5 = MD5.HashData(stream);
-        var md5Hex = Convert.ToHexString(md5);
-        stream.Close();
-        return string.Compare(checksum, md5Hex, StringComparison.CurrentCultureIgnoreCase) == 0;
+        // 确保使用 using 块来可靠地管理和释放资源
+        using (var stream = File.OpenRead(filePath))
+        using (var md5Hasher = MD5.Create()) // <--- 关键：创建 MD5 实例
+        {
+            // 调用 MD5 实例的 ComputeHash 方法，它接受 Stream
+            var md5 = md5Hasher.ComputeHash(stream);
+
+            var md5Hex = Convert.ToHexString(md5);
+
+            // 比较 Hex 字符串时，使用 OrdinalIgnoreCase 比 CurrentCultureIgnoreCase 更快且更准确
+            return string.Compare(checksum, md5Hex, StringComparison.OrdinalIgnoreCase) == 0;
+        }
     }
 
     /// <summary>

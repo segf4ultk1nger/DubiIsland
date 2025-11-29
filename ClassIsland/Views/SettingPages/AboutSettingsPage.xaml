@@ -294,8 +294,10 @@
                         <materialDesign:Ripple Feedback="{DynamicResource MaterialDesignBody}"
                                                materialDesign:RippleAssist.RippleOnTop="True"
                                                MouseDown="AppIcon_OnMouseDown">
-                            <Image Source="/Assets/Banner.png" Stretch="UniformToFill" HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" />
+                            <Border Background="#000000">
+                                <Image Source="/Assets/BannerMain_App2.png" Stretch="UniformToFill" HorizontalAlignment="Center"
+       VerticalAlignment="Center" />
+                            </Border>
                         </materialDesign:Ripple>
                         <Grid HorizontalAlignment="Stretch" Margin="12">
                             <!-- about -->

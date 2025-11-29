@@ -89,20 +89,19 @@ public partial class TimeAdjustmentWindow
         {
             // 上课中
             case TimeState.OnClass when LessonsService.NextBreakingTimeLayoutItem == TimeLayoutItem.Empty:
-                ViewModel.TargetTime = new DateTime(DateOnly.FromDateTime(now), TimeOnly.FromTimeSpan(LessonsService.CurrentTimeLayoutItem.EndSecond.TimeOfDay));
+                ViewModel.TargetTime = now.Date + LessonsService.CurrentTimeLayoutItem.EndSecond.TimeOfDay;
                 return;
             case TimeState.OnClass:
-                ViewModel.TargetTime = new DateTime(DateOnly.FromDateTime(now), TimeOnly.FromTimeSpan(LessonsService.NextBreakingTimeLayoutItem.StartSecond.TimeOfDay));
+                ViewModel.TargetTime = now.Date + LessonsService.NextBreakingTimeLayoutItem.StartSecond.TimeOfDay;
                 return;
             // 课间休息
             case TimeState.Breaking when LessonsService.NextClassTimeLayoutItem == TimeLayoutItem.Empty:
-                ViewModel.TargetTime = new DateTime(DateOnly.FromDateTime(now), TimeOnly.FromTimeSpan(LessonsService.CurrentTimeLayoutItem.EndSecond.TimeOfDay));
+                ViewModel.TargetTime = now.Date + LessonsService.CurrentTimeLayoutItem.EndSecond.TimeOfDay;
                 return;
             case TimeState.Breaking:
             {
                 var nextPrepOnClassDeltaSeconds = classNotificationProvider.GetSettingsDeltaTime();
-                var onClassTime = new DateTime(DateOnly.FromDateTime(now), TimeOnly.FromTimeSpan(
-                    LessonsService.NextClassTimeLayoutItem.StartSecond.TimeOfDay));
+                var onClassTime = now.Date + LessonsService.NextClassTimeLayoutItem.StartSecond.TimeOfDay;
                 var prepOnClassTime = onClassTime - TimeSpanHelper.FromSecondsSafe(nextPrepOnClassDeltaSeconds);
                 if (now <= prepOnClassTime)
                 {
@@ -113,12 +112,10 @@ public partial class TimeAdjustmentWindow
                 return;
                 }
             case TimeState.None when LessonsService.NextClassTimeLayoutItem != TimeLayoutItem.Empty:
-                ViewModel.TargetTime = new DateTime(DateOnly.FromDateTime(now), TimeOnly.FromTimeSpan(
-                    LessonsService.NextClassTimeLayoutItem.StartSecond.TimeOfDay));
+                ViewModel.TargetTime = now.Date + LessonsService.NextClassTimeLayoutItem.StartSecond.TimeOfDay;
                 return;
             case TimeState.None when LessonsService.NextBreakingTimeLayoutItem != TimeLayoutItem.Empty:
-                ViewModel.TargetTime = new DateTime(DateOnly.FromDateTime(now), TimeOnly.FromTimeSpan(
-                    LessonsService.NextBreakingTimeLayoutItem.StartSecond.TimeOfDay));
+                ViewModel.TargetTime = now.Date + LessonsService.NextBreakingTimeLayoutItem.StartSecond.TimeOfDay;
                 return;
             case TimeState.PrepareOnClass:  // 弃用
             case TimeState.AfterSchool:

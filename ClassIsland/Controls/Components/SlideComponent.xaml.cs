@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Threading;
 using ClassIsland.Core.Abstractions.Services;
 using ClassIsland.Core.Attributes;
+using ClassIsland.Core.Extensions;
 using ClassIsland.Helpers;
 using MaterialDesignThemes.Wpf;
 

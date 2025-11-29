@@ -29,8 +29,5 @@
 		              Overwrite="true"
 		              DestinationFile="$(ClassIslandSdk_CipxOutputPath)"/>
 		
-		<!-- Generate MD5 -->
-		<Exec Command="$(PowershellBinaryName) -ep bypass -NoLogo -File &quot;$(ClassIslandSdk_PackageRoot)generate-md5.ps1&quot; &quot;$(CipxPackageOutputDirectory)&quot;"
-		      Condition="'$(GenerateHashSummary)'=='true'"/>
 	</Target>
 </Project>

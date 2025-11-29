@@ -11,6 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DotNetCampus.LatestCSharpFeatures" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\ClassIsland.Shared.IPC\ClassIsland.Shared.IPC.csproj" />
     <ProjectReference Include="..\..\ClassIsland.Shared\ClassIsland.Shared.csproj" />
   </ItemGroup>

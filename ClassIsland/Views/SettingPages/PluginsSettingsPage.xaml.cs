@@ -81,7 +81,7 @@ public partial class PluginsSettingsPage : SettingsPageBase
         try
         {
             ViewModel.ReadmeDocument = MarkdownConvertHelper.ConvertMarkdown("> Loading...");
-            await DocumentLoadingCancellationTokenSource.CancelAsync();
+            DocumentLoadingCancellationTokenSource.Cancel();
             DocumentLoadingCancellationTokenSource = new();
             ViewModel.IsLoadingDocument = true;
             document = uri.Scheme switch

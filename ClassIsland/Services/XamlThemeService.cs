@@ -348,7 +348,7 @@ public class XamlThemeService : ObservableRecipient, IXamlThemeService
             }
         }
 
-        foreach (var pkg in Directory.EnumerateDirectories(ThemesPath).Where(x => Path.Exists(Path.Combine(x, ".uninstall"))))
+        foreach (var pkg in Directory.EnumerateDirectories(ThemesPath).Where(x => File.Exists(Path.Combine(x, ".uninstall"))))
         {
             try
             {

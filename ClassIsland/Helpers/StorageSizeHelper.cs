@@ -38,7 +38,7 @@ namespace ClassIsland.Helpers
         public static ulong GetFolderStorageSize(string path)
         {
             ulong size = 0;
-            if (!Path.Exists(path)) return 0;
+            if (!Directory.Exists(path)) return 0;
             try
             {
                 DirectoryInfo dirInfo = new(path);
