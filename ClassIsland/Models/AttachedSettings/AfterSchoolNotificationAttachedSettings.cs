@@ -10,6 +10,7 @@ public class AfterSchoolNotificationAttachedSettings : ObservableRecipient, IAtt
 {
     private bool _isEnabled = true;
     private string _notificationMsg = "今天的课程已结束，请同学们有序离开。";
+    private int _notificationMsgDuration = 30;
     private bool _isAttachSettingsEnabled = false;
 
     public bool IsEnabled

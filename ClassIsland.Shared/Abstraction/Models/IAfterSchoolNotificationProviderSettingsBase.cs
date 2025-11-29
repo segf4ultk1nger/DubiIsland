@@ -8,18 +8,15 @@ public interface IAfterSchoolNotificationProviderSettingsBase
     /// <summary>
     /// 是否启用放学提醒
     /// </summary>
-    public bool IsEnabled
-    {
-        get;
-        set;
-    }
+    public bool IsEnabled { get; set; }
 
     /// <summary>
     /// 放学提醒文本
     /// </summary>
-    public string NotificationMsg
-    {
-        get;
-        set;
-    }
+    public string NotificationMsg { get; set; }
+
+    /// <summary>
+    /// 放学提醒文本显示时长
+    /// </summary>
+    public int NotificationMsgDuration { get; set; }
 }

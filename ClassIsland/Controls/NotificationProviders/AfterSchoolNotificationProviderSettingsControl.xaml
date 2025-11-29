@@ -40,6 +40,16 @@
                      materialDesign:HintAssist.Hint="提醒显示内容"
                      Padding="8"
                      Text="{Binding Settings.NotificationMsg}"/>
+            <ci:SettingsCard IconGlyph="ClockOutline" Header="放学提醒显示持续时长" Margin="0 6 0 0" Description="显示放学提醒的时长。">
+                <ci:SettingsCard.Switcher>
+                    <ci:NumbericTextBox MaxValue="3600" MinValue="3"
+                                   Text="{Binding Settings.NotificationMsgDuration, Converter={StaticResource IntToStringConverter}}"
+                                   Width="120"
+                                   Foreground="{DynamicResource MaterialDesignBody}"
+                                   Style="{StaticResource MaterialDesignTextBoxBase}"
+                                   materialDesign:TextFieldAssist.SuffixText="秒" />
+                </ci:SettingsCard.Switcher>
+            </ci:SettingsCard>
         </StackPanel>
     </ScrollViewer>
 </ci:NotificationProviderControlBase>

@@ -1,13 +1,14 @@
 ﻿using ClassIsland.Shared.Abstraction.Models;
-
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ClassIsland.Models.NotificationProviderSettings;
 
-public class AfterSchoolNotificationProviderSettings : ObservableRecipient, IAfterSchoolNotificationProviderSettingsBase
+public class
+    AfterSchoolNotificationProviderSettings : ObservableRecipient, IAfterSchoolNotificationProviderSettingsBase
 {
     private bool _isEnabled = true;
     private string _notificationMsg = "今天的课程已结束，请同学们有序离开。";
+    private int _notificationMsgDuration = 30;
 
     public bool IsEnabled
     {
@@ -27,6 +28,17 @@ public class AfterSchoolNotificationProviderSettings : ObservableRecipient, IAft
         {
             if (value == _notificationMsg) return;
             _notificationMsg = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public int NotificationMsgDuration
+    {
+        get => _notificationMsgDuration;
+        set
+        {
+            if (value == _notificationMsgDuration) return;
+            _notificationMsgDuration = value;
             OnPropertyChanged();
         }
     }
