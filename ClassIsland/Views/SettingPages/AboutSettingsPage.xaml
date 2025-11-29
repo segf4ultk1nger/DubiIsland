@@ -306,7 +306,7 @@
                                     <Run Text="ClassIsland" FontSize="24" />
                                     <Run Text="{x:Static ci:App.AppVersion}" />
                                     <Run Text="(Codename" />
-                                    <Run Text="{x:Static ci:App.AppCodeName}" /><Run Text=")" />
+                                    <Run Text="{x:Static ci:App.AppCodeName}" /><Run Text=" DubiIsland延续计划 )" />
                                     <LineBreak />
                                     <Run Text="Copyright (c) 2023-"/><Run Text="{Binding Year, Source={x:Static system:DateTime.Now}, Mode=OneWay}" />
                                     <Run Text="HelloWRC"/>
